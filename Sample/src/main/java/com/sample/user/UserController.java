@@ -1,9 +1,6 @@
 package com.sample.user;
 
-
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -11,15 +8,23 @@ import java.util.List;
 public class UserController {
 
     private UserDao service;
+
     public UserController(UserDao service) {
         this.service = service;
     }
-     @GetMapping("/user")
+
+    @GetMapping("/users")
     public List<User> getAllUsers() {
         return service.findAll();
     }
-    @GetMapping("/user/{id}")
-    public User getUsersById(@PathVariable int id) {
+
+    @GetMapping("/users/{id}")
+    public User getUserById(@PathVariable int id) {
         return service.findById(id);
+    }
+
+    @PostMapping("/users")
+    public User createUser(@RequestBody User user) {
+        return service.save(user);
     }
 }

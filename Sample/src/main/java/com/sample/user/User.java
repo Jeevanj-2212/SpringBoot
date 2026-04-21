@@ -4,15 +4,26 @@ import java.time.LocalDate;
 
 public class User {
 
-    private int id;
+    private Integer id;
     private String name;
-    private LocalDate birthddate;
+    private LocalDate birthDate;
 
-    public int getId() {
+
+    public User() {
+    }
+
+    // Parameterized constructor
+    public User(Integer id, String name, LocalDate birthDate) {
+        this.id = id;
+        this.name = name;
+        this.birthDate = birthDate;
+    }
+
+    public Integer getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
@@ -24,19 +35,12 @@ public class User {
         this.name = name;
     }
 
-    public LocalDate getBirthddate() {
-        return birthddate;
+    public LocalDate getBirthDate() {
+        return birthDate;
     }
 
-    public void setBirthddate(LocalDate birthddate) {
-        this.birthddate = birthddate;
-    }
-
-    public User(int id, String name, LocalDate birthddate) {
-        super();
-        this.id = id;
-        this.name = name;
-        this.birthddate = birthddate;
+    public void setBirthDate(LocalDate birthDate) {
+        this.birthDate = birthDate;
     }
 
     @Override
@@ -44,7 +48,7 @@ public class User {
         return "User{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
-                ", birthddate=" + birthddate +
+                ", birthDate=" + birthDate +
                 '}';
     }
 }
