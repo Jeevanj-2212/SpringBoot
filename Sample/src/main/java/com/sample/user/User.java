@@ -3,7 +3,6 @@ package com.sample.user;
 import java.time.LocalDate;
 
 public class User {
-
     private Integer id;
     private String name;
     private LocalDate birthDate;

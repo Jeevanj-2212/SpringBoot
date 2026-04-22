@@ -1,7 +1,10 @@
 package com.sample.user;
 
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
+import java.net.URI;
 import java.util.List;
 
 @RestController
@@ -20,11 +23,21 @@ public class UserController {
 
     @GetMapping("/users/{id}")
     public User getUserById(@PathVariable int id) {
-        return service.findById(id);
+        User user = service.findById(id);
+        if(user == null){
+            throw new UserNotFoundException("id "+id);
+        }
+        return user;
     }
 
+
     @PostMapping("/users")
-    public User createUser(@RequestBody User user) {
-        return service.save(user);
+    public ResponseEntity<User> createUser(@RequestBody User user) {
+
+        //In order to get the location of the user after saving we are using URI so in response we will get Location
+        //http://localhost:8080/users/4 like this
+         User savedUser = service.save(user);
+         URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(savedUser.getId()).toUri();
+         return ResponseEntity.created(uri).build();
     }
 }
