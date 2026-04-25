@@ -1,5 +1,6 @@
 package com.sample.user;
 
+import jakarta.validation.Valid;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
@@ -29,10 +30,15 @@ public class UserController {
         }
         return user;
     }
+    @DeleteMapping("/users/{id}")
+    public void  deleteUserById(@PathVariable int id) {
+         service.deleteById(id);
+
+    }
 
 
     @PostMapping("/users")
-    public ResponseEntity<User> createUser(@RequestBody User user) {
+    public ResponseEntity<User> createUser(@Valid @RequestBody User user) {
 
         //In order to get the location of the user after saving we are using URI so in response we will get Location
         //http://localhost:8080/users/4 like this

@@ -1,10 +1,20 @@
 package com.sample.user;
 
+import jakarta.validation.constraints.Past;
+import jakarta.validation.constraints.Size;
+import org.apache.logging.log4j.message.Message;
+
 import java.time.LocalDate;
 
 public class User {
+
+
     private Integer id;
+
+    @Size(min=2, message = "name should be more than 2 chars ")
     private String name;
+
+    @Past (message = "birth data should not be in past ")
     private LocalDate birthDate;
 
 

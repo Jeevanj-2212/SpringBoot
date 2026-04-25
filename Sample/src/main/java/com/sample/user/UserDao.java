@@ -28,6 +28,9 @@ public class UserDao {
                 .findFirst()
                 .orElse(null);
     }
+    public void deleteById(int id) {
+        users.removeIf(u -> u.getId() == id);
+    }
 
     public User save(User user) {
         user.setId(++userCount);

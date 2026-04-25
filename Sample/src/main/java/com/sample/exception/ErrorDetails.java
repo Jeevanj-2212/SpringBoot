@@ -3,12 +3,12 @@ package com.sample.exception;
 import java.time.LocalDate;
 
 
-public class ExceptionDetails {
+public class ErrorDetails {
     private LocalDate timeStamp;
     private String message;
     private String details;
 
-    public ExceptionDetails(LocalDate timeStamp, String message, String details) {
+    public ErrorDetails(LocalDate timeStamp, String message, String details) {
         super();
         this.timeStamp = timeStamp;
         this.message = message;
