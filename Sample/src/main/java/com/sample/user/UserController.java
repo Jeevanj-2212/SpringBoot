@@ -46,4 +46,9 @@ public class UserController {
          URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(savedUser.getId()).toUri();
          return ResponseEntity.created(uri).build();
     }
+
+    @GetMapping("/helloWorld-i18n")
+    public  String helloWorldInternationalisation(){
+        return "Hello World";
+    }
 }
